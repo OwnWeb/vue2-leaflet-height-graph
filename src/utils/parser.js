@@ -61,7 +61,7 @@ const buildCollections = (extras, coordinates) => {
  */
 const addAttributeTypeProperty = (feature) => {
     feature.properties = feature.properties || {}
-    feature.properties.attributeType = feature.properties.attributeType || 'elevation'
+    feature.properties.attributeType = typeof feature.properties.attributeType === 'undefined' ? 'elevation' : feature.properties.attributeType
 }
 
 /**
