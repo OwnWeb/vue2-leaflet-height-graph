@@ -1,12 +1,13 @@
 <template>
     <div id="app">
-        <l-map ref="map" :zoom="zoom" :center="initialLocation" :bounds="bounds">
+        <l-map id="map" ref="map" :zoom="zoom" :center="initialLocation" :bounds="bounds">
             <l-tile-layer url="http://{s}.tile.osm.org/{z}/{x}/{y}.png"></l-tile-layer>
             <l-heightgraph
                     :options="heightGraphOptions"
                     :data="data"
                     :position="'bottomright'"
                     :parser="parser"
+                    :container="'heightgraphWrapper'"
             ></l-heightgraph>
             <l-geo-json ref="geojson" :geojson="data"></l-geo-json>
             <l-control class="example-custom-control" position="bottomleft">
@@ -15,6 +16,9 @@
                 </p>
             </l-control>
         </l-map>
+      <div id="heightgraphWrapper" style="background:blue; width:100%; height:30%; display: flex; justify-content: space-around; ">
+        <h1>test</h1>
+      </div>
     </div>
 </template>
 <script>
@@ -70,6 +74,7 @@
                 ],
                 dataSetId: 0,
                 heightGraphOptions: {
+                    expandControls:false,
                     width: 1000,
                     position: "bottomleft",
                     graphStyle: {
@@ -120,7 +125,10 @@
         height: 100%;
         width: 100%;
     }
-
+    #map {
+      width: 100%;
+      height: 70%;
+    }
     .example-custom-control {
         background: #fff;
         padding: 0 0.5em;
